@@ -16,6 +16,7 @@ const ShopContextProvider = (props) => {
   const [showSearch, setShowSearch] = useState(false);
   const [cartItems, setCartItems] = useState({});
   const [products,setProducts]=useState([]);
+  const [token,setToken]=useState('');
   const navigate= useNavigate();
 
   const addToCart = async (itemId, size) => {
@@ -99,6 +100,13 @@ useEffect(()=>{
     getProductsData();
 },[]);
 
+useEffect(()=>{
+  if (!token && localStorage.getItem('token')){
+    setToken(localStorage.getItem('token'));
+    
+  }
+},[])
+
 
   const value = {
     products,
@@ -114,7 +122,9 @@ useEffect(()=>{
     updateQuantity,
     getCartAmount,
     navigate,
-    backendUrl
+    backendUrl,
+    token,
+    setToken
   };
   // Step 3: Wrap children inside Provider
   return (
