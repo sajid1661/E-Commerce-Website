@@ -13,9 +13,7 @@ const Login = () => {
     event.preventDefault();
     // sending data in backend with axios api package.
     try {
-      console.log(currentState);
       if (currentState === "Sign Up") {
-        console.log("inside if");
         const response = await axios.post(backendUrl + "/api/user/register", {
           name,
           email,
@@ -47,11 +45,10 @@ const Login = () => {
   };
 
   useEffect(()=>{
-    console.log(currentState);
     if(token){
       navigate('/');
     }
-  },[token,currentState])
+  },[token])
 
   return (
     <form
