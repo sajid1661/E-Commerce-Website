@@ -106,7 +106,7 @@ const Login = () => {
         )}
       </div>
       <button className="bg-black text-white font-light px-8 py-2 mt-4">
-        {currentState === "Login" ? "Sign In" : "Sign Up"}
+        {currentState === "Login" ? "Login" : "Sign Up"}
       </button>
     </form>
   );
