@@ -13,7 +13,9 @@ const Login = () => {
     event.preventDefault();
     // sending data in backend with axios api package.
     try {
-      if (currentState == "Sign Up") {
+      console.log(currentState);
+      if (currentState === "Sign Up") {
+        console.log("inside if");
         const response = await axios.post(backendUrl + "/api/user/register", {
           name,
           email,
@@ -45,10 +47,11 @@ const Login = () => {
   };
 
   useEffect(()=>{
+    console.log(currentState);
     if(token){
       navigate('/');
     }
-  },[token])
+  },[token,currentState])
 
   return (
     <form
@@ -91,7 +94,7 @@ const Login = () => {
         <p className="cursor-pointer ">Forgot your password</p>
         {currentState === "Login" ? (
           <p
-            onClick={() => setCurrentState("Sigh Up")}
+            onClick={() => setCurrentState("Sign Up")}
             className="cursor-pointer"
           >
             Create Account
