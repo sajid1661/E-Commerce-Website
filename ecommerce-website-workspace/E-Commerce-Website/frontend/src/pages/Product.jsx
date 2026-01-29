@@ -10,7 +10,7 @@ const Product = () => {
   const [image, setImage] = useState("");
   const [size,setSize]=useState('');
 
-  const fatchProductData = () => {
+  const fetchProductData = () => {
     products.map((item) => {
       if (item._id === productId) {
         setProductData(item);
@@ -20,7 +20,7 @@ const Product = () => {
     });
   };
   useEffect(() => {
-    fatchProductData();
+    fetchProductData();
   }, [productId, products]);
   return productData ? (
     <div className="border-t-2 pt-10 transition-opacity ease-in duration-500 opacity-100">
@@ -87,8 +87,8 @@ const Product = () => {
           <p className="border px-5 py-3 text-sm">Review (122)</p>
         </div>
         <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500 ">
-            <p>An e-commerce website is an online platform that facilitates the buying and selling of products or services over the internet. it serves as a virtual marketplace where businesses and individuals can showcase their products, interact with customers, and conduct transactions without the need for a physical presence. E-commerce websites have gained innense popularity due to their convenience, accessibility, and the global reach they offer.</p>
-            <p>E-commerce websites typically display products or services along with detailed descriptions, images, prices, and any available variations (e.g., sizes, colors). Each priduct usually has its own dedicated page with relevant information. </p>
+            <p>An e-commerce website is an online platform that facilitates the buying and selling of products or services over the internet. It serves as a virtual marketplace where businesses and individuals can showcase their products, interact with customers, and conduct transactions without the need for a physical presence. E-commerce websites have gained immense popularity due to their convenience, accessibility, and the global reach they offer.</p>
+            <p>E-commerce websites typically display products or services along with detailed descriptions, images, prices, and any available variations (e.g., sizes, colors). Each product usually has its own dedicated page with relevant information. </p>
         </div>
       </div>
       {/* ----------- Display Related Products -------- */}
