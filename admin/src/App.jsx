@@ -6,12 +6,7 @@ import Orders from "./pages/Orders";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Login from "./components/Login";
-import { ToastContainer, toast } from 'react-toastify';
-
-// backend API connection 
-
-export const backendUrl = import.meta.env.VITE_BACKEND_URL;
-export const currency='$';
+import { ToastContainer } from 'react-toastify';
 
 const App = () => {
   const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '');

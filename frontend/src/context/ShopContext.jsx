@@ -1,11 +1,9 @@
-import { createContext, useEffect, useState } from "react";
+import { ShopContext } from "./ShopContext.js";
+import { useEffect, useState } from "react";
 // import { products } from "../assets/assets";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
-
-// Step 1: Create a Context
-export const ShopContext = createContext();
 
 const ShopContextProvider = (props) => {
   // Step 2: Define global values you want to share

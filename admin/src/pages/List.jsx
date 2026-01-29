@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { backendUrl, currency } from "../App";
+import { backendUrl, currency } from "../constants";
 import { toast } from "react-toastify";
 
 const List = ({ token }) => {
