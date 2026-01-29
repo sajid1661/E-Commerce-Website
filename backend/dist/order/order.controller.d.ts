@@ -9,7 +9,8 @@ export declare class OrderController {
     }>;
     placeOrderStripe(placeOrderStripeDto: PlaceOrderStripeDto, origin: string): Promise<{
         success: boolean;
-        session_url: string;
+        session_url?: string;
+        message?: string;
     }>;
     placeOrderRazorpay(): Promise<any>;
     verifyStripe(verifyStripeDto: VerifyStripeDto): Promise<{

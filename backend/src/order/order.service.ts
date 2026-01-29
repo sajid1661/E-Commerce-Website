@@ -45,7 +45,7 @@ export class OrderService {
     }
   }
 
-  async placeOrderStripe(placeOrderStripeDto: PlaceOrderStripeDto, origin: string): Promise<{ success: boolean; session_url: string }> {
+  async placeOrderStripe(placeOrderStripeDto: PlaceOrderStripeDto, origin: string): Promise<{ success: boolean; session_url?: string; message?: string }> {
     try {
       const { userId, items, amount, address } = placeOrderStripeDto;
 

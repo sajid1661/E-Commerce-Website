@@ -17,7 +17,8 @@ export declare class OrderService {
     }>;
     placeOrderStripe(placeOrderStripeDto: PlaceOrderStripeDto, origin: string): Promise<{
         success: boolean;
-        session_url: string;
+        session_url?: string;
+        message?: string;
     }>;
     verifyStripe(verifyStripeDto: VerifyStripeDto): Promise<{
         success: boolean;
