@@ -8,22 +8,21 @@ export class AdminAuthGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
-    const token = request.headers.authorization?.split(' ')[1] || request.body.token;
+    const token = request.headers['token'];
 
     if (!token) {
-      throw new UnauthorizedException('No token provided');
+      throw new UnauthorizedException('Not Authorized Login Again');
     }
 
     try {
-      const decoded = jwt.verify(token, this.configService.get<string>('JWT_SECRET'));
-      // For admin, check if it's admin token (simple check)
-      if (typeof decoded === 'string') {
-        // Admin token is email+password signed
-        return true;
+      const token_decode = jwt.verify(token, this.configService.get<string>('JWT_SECRET'));
+      const adminKey = this.configService.get<string>('ADMIN_EMAIL') + this.configService.get<string>('ADMIN_PASSWORD');
+      if (token_decode !== adminKey) {
+        throw new UnauthorizedException('Not Authorized Login Again');
       }
-      return false;
+      return true;
     } catch (error) {
-      throw new UnauthorizedException('Invalid token');
+      throw new UnauthorizedException(error.message);
     }
   }
 }

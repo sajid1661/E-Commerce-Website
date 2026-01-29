@@ -10,6 +10,7 @@ exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const config_1 = require("@nestjs/config");
 const mongoose_1 = require("@nestjs/mongoose");
+const jwt_1 = require("@nestjs/jwt");
 const user_module_1 = require("./user/user.module");
 const product_module_1 = require("./product/product.module");
 const cart_module_1 = require("./cart/cart.module");
@@ -25,6 +26,11 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             mongoose_1.MongooseModule.forRoot(process.env.MONGODB_URI || 'mongodb://localhost:27017/ecommerce'),
+            jwt_1.JwtModule.register({
+                global: true,
+                secret: process.env.JWT_SECRET,
+                signOptions: { expiresIn: '24h' },
+            }),
             user_module_1.UserModule,
             product_module_1.ProductModule,
             cart_module_1.CartModule,
