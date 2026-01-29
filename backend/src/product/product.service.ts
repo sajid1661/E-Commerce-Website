@@ -1,9 +1,13 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Product, ProductDocument } from './product.schema';
-import { AddProductDto, RemoveProductDto, SingleProductDto } from './product.dto';
-import { CloudinaryService } from '../cloudinary/cloudinary.service';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { Product, ProductDocument } from "./product.schema";
+import {
+  AddProductDto,
+  RemoveProductDto,
+  SingleProductDto,
+} from "./product.dto";
+import { CloudinaryService } from "../cloudinary/cloudinary.service";
 
 @Injectable()
 export class ProductService {
@@ -12,15 +16,26 @@ export class ProductService {
     private cloudinaryService: CloudinaryService,
   ) {}
 
-  async addProduct(addProductDto: AddProductDto, files: any[]): Promise<{ success: boolean; message: string }> {
+  async addProduct(
+    addProductDto: AddProductDto,
+    files: any[],
+  ): Promise<{ success: boolean; message: string }> {
     try {
-      const { name, description, price, category, subCategory, sizes, bestseller } = addProductDto;
+      const {
+        name,
+        description,
+        price,
+        category,
+        subCategory,
+        sizes,
+        bestseller,
+      } = addProductDto;
 
-      const images = files.filter(file => file);
+      const images = files.filter((file) => file);
       const imagesUrl = await Promise.all(
         images.map(async (file) => {
           return await this.cloudinaryService.uploadImage(file.path);
-        })
+        }),
       );
 
       const productData = {
@@ -38,13 +53,17 @@ export class ProductService {
       const product = new this.productModel(productData);
       await product.save();
 
-      return { success: true, message: 'Product added' };
+      return { success: true, message: "Product added" };
     } catch (error) {
       return { success: false, message: error.message };
     }
   }
 
-  async listProducts(): Promise<{ success: boolean; products?: any[]; message?: string }> {
+  async listProducts(): Promise<{
+    success: boolean;
+    products?: any[];
+    message?: string;
+  }> {
     try {
       const products = await this.productModel.find({});
       return { success: true, products };
@@ -53,18 +72,24 @@ export class ProductService {
     }
   }
 
-  async removeProduct(removeProductDto: RemoveProductDto): Promise<{ success: boolean; message: string }> {
+  async removeProduct(
+    removeProductDto: RemoveProductDto,
+  ): Promise<{ success: boolean; message: string }> {
     try {
       await this.productModel.findByIdAndDelete(removeProductDto.id);
-      return { success: true, message: 'Product removed' };
+      return { success: true, message: "Product removed" };
     } catch (error) {
       return { success: false, message: error.message };
     }
   }
 
-  async singleProduct(singleProductDto: SingleProductDto): Promise<{ success: boolean; product?: any; message?: string }> {
+  async singleProduct(
+    singleProductDto: SingleProductDto,
+  ): Promise<{ success: boolean; product?: any; message?: string }> {
     try {
-      const product = await this.productModel.findById(singleProductDto.productId);
+      const product = await this.productModel.findById(
+        singleProductDto.productId,
+      );
       return { success: true, product };
     } catch (error) {
       return { success: false, message: error.message };

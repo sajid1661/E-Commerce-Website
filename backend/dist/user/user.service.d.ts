@@ -1,7 +1,7 @@
-import { Model } from 'mongoose';
-import { UserDocument } from './user.schema';
-import { RegisterDto, LoginDto, AdminLoginDto } from './user.dto';
-import { ConfigService } from '@nestjs/config';
+import { Model } from "mongoose";
+import { UserDocument } from "./user.schema";
+import { RegisterDto, LoginDto, AdminLoginDto } from "./user.dto";
+import { ConfigService } from "@nestjs/config";
 export declare class UserService {
     private userModel;
     private configService;

@@ -1,4 +1,4 @@
-import { Document } from 'mongoose';
+import { Document } from "mongoose";
 export type OrderDocument = Order & Document;
 export declare class Order {
     userId: string;

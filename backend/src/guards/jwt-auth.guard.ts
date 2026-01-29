@@ -1,5 +1,10 @@
-import { Injectable, CanActivate, ExecutionContext, UnauthorizedException } from '@nestjs/common';
-import { JwtService } from '@nestjs/jwt';
+import {
+  Injectable,
+  CanActivate,
+  ExecutionContext,
+  UnauthorizedException,
+} from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 
 @Injectable()
 export class JwtAuthGuard implements CanActivate {
@@ -7,14 +12,16 @@ export class JwtAuthGuard implements CanActivate {
 
   canActivate(context: ExecutionContext): boolean {
     const request = context.switchToHttp().getRequest();
-    const token = request.headers['token'];
+    const token = request.headers["token"];
 
     if (!token) {
-      throw new UnauthorizedException('Not Authorized Login Again');
+      throw new UnauthorizedException("Not Authorized Login Again");
     }
 
     try {
-      const payload = this.jwtService.verify(token, { secret: process.env.JWT_SECRET });
+      const payload = this.jwtService.verify(token, {
+        secret: process.env.JWT_SECRET,
+      });
       request.body.userId = payload.id;
       return true;
     } catch (error) {

@@ -1,5 +1,5 @@
-import { UserService } from './user.service';
-import { RegisterDto, LoginDto, AdminLoginDto } from './user.dto';
+import { UserService } from "./user.service";
+import { RegisterDto, LoginDto, AdminLoginDto } from "./user.dto";
 export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);

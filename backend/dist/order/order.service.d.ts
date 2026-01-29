@@ -1,8 +1,8 @@
-import { Model } from 'mongoose';
-import { OrderDocument } from './order.schema';
-import { UserDocument } from '../user/user.schema';
-import { PlaceOrderDto, PlaceOrderStripeDto, VerifyStripeDto, UserOrdersDto, UpdateStatusDto } from './order.dto';
-import { ConfigService } from '@nestjs/config';
+import { Model } from "mongoose";
+import { OrderDocument } from "./order.schema";
+import { UserDocument } from "../user/user.schema";
+import { PlaceOrderDto, PlaceOrderStripeDto, VerifyStripeDto, UserOrdersDto, UpdateStatusDto } from "./order.dto";
+import { ConfigService } from "@nestjs/config";
 export declare class OrderService {
     private orderModel;
     private userModel;

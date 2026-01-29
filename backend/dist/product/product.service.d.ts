@@ -1,7 +1,7 @@
-import { Model } from 'mongoose';
-import { ProductDocument } from './product.schema';
-import { AddProductDto, RemoveProductDto, SingleProductDto } from './product.dto';
-import { CloudinaryService } from '../cloudinary/cloudinary.service';
+import { Model } from "mongoose";
+import { ProductDocument } from "./product.schema";
+import { AddProductDto, RemoveProductDto, SingleProductDto } from "./product.dto";
+import { CloudinaryService } from "../cloudinary/cloudinary.service";
 export declare class ProductService {
     private productModel;
     private cloudinaryService;

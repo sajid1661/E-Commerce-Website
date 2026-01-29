@@ -1,6 +1,6 @@
-import { Model } from 'mongoose';
-import { UserDocument } from '../user/user.schema';
-import { AddToCartDto, UpdateCartDto, GetUserCartDto } from './cart.dto';
+import { Model } from "mongoose";
+import { UserDocument } from "../user/user.schema";
+import { AddToCartDto, UpdateCartDto, GetUserCartDto } from "./cart.dto";
 export declare class CartService {
     private userModel;
     constructor(userModel: Model<UserDocument>);

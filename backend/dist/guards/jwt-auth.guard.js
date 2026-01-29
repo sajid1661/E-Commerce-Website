@@ -18,12 +18,14 @@ let JwtAuthGuard = class JwtAuthGuard {
     }
     canActivate(context) {
         const request = context.switchToHttp().getRequest();
-        const token = request.headers['token'];
+        const token = request.headers["token"];
         if (!token) {
-            throw new common_1.UnauthorizedException('Not Authorized Login Again');
+            throw new common_1.UnauthorizedException("Not Authorized Login Again");
         }
         try {
-            const payload = this.jwtService.verify(token, { secret: process.env.JWT_SECRET });
+            const payload = this.jwtService.verify(token, {
+                secret: process.env.JWT_SECRET,
+            });
             request.body.userId = payload.id;
             return true;
         }

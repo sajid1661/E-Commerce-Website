@@ -46,7 +46,7 @@ let OrderController = class OrderController {
 };
 exports.OrderController = OrderController;
 __decorate([
-    (0, common_1.Post)('place'),
+    (0, common_1.Post)("place"),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -54,23 +54,23 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "placeOrder", null);
 __decorate([
-    (0, common_1.Post)('stripe'),
+    (0, common_1.Post)("stripe"),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __param(0, (0, common_1.Body)()),
-    __param(1, (0, common_1.Headers)('origin')),
+    __param(1, (0, common_1.Headers)("origin")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [order_dto_1.PlaceOrderStripeDto, String]),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "placeOrderStripe", null);
 __decorate([
-    (0, common_1.Post)('razorpay'),
+    (0, common_1.Post)("razorpay"),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "placeOrderRazorpay", null);
 __decorate([
-    (0, common_1.Post)('verifyStripe'),
+    (0, common_1.Post)("verifyStripe"),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -78,14 +78,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "verifyStripe", null);
 __decorate([
-    (0, common_1.Post)('list'),
+    (0, common_1.Post)("list"),
     (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "allOrders", null);
 __decorate([
-    (0, common_1.Post)('userorders'),
+    (0, common_1.Post)("userorders"),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -93,7 +93,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "userOrders", null);
 __decorate([
-    (0, common_1.Post)('status'),
+    (0, common_1.Post)("status"),
     (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -101,7 +101,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], OrderController.prototype, "updateStatus", null);
 exports.OrderController = OrderController = __decorate([
-    (0, common_1.Controller)('order'),
+    (0, common_1.Controller)("order"),
     __metadata("design:paramtypes", [order_service_1.OrderService])
 ], OrderController);
 //# sourceMappingURL=order.controller.js.map

@@ -19,17 +19,19 @@ let UserAuthGuard = class UserAuthGuard {
     }
     canActivate(context) {
         const request = context.switchToHttp().getRequest();
-        const token = request.headers.authorization?.split(' ')[1] || request.headers.token || request.body.token;
+        const token = request.headers.authorization?.split(" ")[1] ||
+            request.headers.token ||
+            request.body.token;
         if (!token) {
-            throw new common_1.UnauthorizedException('Not Authorized, Login Again');
+            throw new common_1.UnauthorizedException("Not Authorized, Login Again");
         }
         try {
-            const decoded = jwt.verify(token, this.configService.get('JWT_SECRET'));
+            const decoded = jwt.verify(token, this.configService.get("JWT_SECRET"));
             request.body.userId = decoded.id;
             return true;
         }
         catch (error) {
-            throw new common_1.UnauthorizedException('Invalid token');
+            throw new common_1.UnauthorizedException("Invalid token");
         }
     }
 };

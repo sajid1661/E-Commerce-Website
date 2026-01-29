@@ -17,9 +17,7 @@ let CartModule = class CartModule {
 exports.CartModule = CartModule;
 exports.CartModule = CartModule = __decorate([
     (0, common_1.Module)({
-        imports: [
-            mongoose_1.MongooseModule.forFeature([{ name: 'User', schema: user_schema_1.UserSchema }]),
-        ],
+        imports: [mongoose_1.MongooseModule.forFeature([{ name: "User", schema: user_schema_1.UserSchema }])],
         controllers: [cart_controller_1.CartController],
         providers: [cart_service_1.CartService],
         exports: [cart_service_1.CartService],

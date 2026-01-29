@@ -1,5 +1,5 @@
-import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
+import { Document } from "mongoose";
 
 export type OrderDocument = Order & Document;
 
@@ -17,7 +17,7 @@ export class Order {
   @Prop({ type: Object, required: true })
   address: any;
 
-  @Prop({ required: true, default: 'Order Placed' })
+  @Prop({ required: true, default: "Order Placed" })
   status: string;
 
   @Prop({ required: true })

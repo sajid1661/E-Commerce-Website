@@ -1,5 +1,5 @@
-import { OrderService } from './order.service';
-import { PlaceOrderDto, PlaceOrderStripeDto, VerifyStripeDto, UserOrdersDto, UpdateStatusDto } from './order.dto';
+import { OrderService } from "./order.service";
+import { PlaceOrderDto, PlaceOrderStripeDto, VerifyStripeDto, UserOrdersDto, UpdateStatusDto } from "./order.dto";
 export declare class OrderController {
     private readonly orderService;
     constructor(orderService: OrderService);

@@ -25,7 +25,7 @@ let CartService = class CartService {
         try {
             const { userId, itemId, size } = addToCartDto;
             const userData = await this.userModel.findById(userId);
-            let cartData = userData.cartData || {};
+            const cartData = userData.cartData || {};
             if (cartData[itemId]) {
                 if (cartData[itemId][size]) {
                     cartData[itemId][size] += 1;
@@ -39,7 +39,7 @@ let CartService = class CartService {
                 cartData[itemId][size] = 1;
             }
             await this.userModel.findByIdAndUpdate(userId, { cartData });
-            return { success: true, message: 'Added To Cart' };
+            return { success: true, message: "Added To Cart" };
         }
         catch (error) {
             return { success: false, message: error.message };
@@ -49,10 +49,10 @@ let CartService = class CartService {
         try {
             const { userId, itemId, size, quantity } = updateCartDto;
             const userData = await this.userModel.findById(userId);
-            let cartData = userData.cartData || {};
+            const cartData = userData.cartData || {};
             cartData[itemId][size] = quantity;
             await this.userModel.findByIdAndUpdate(userId, { cartData });
-            return { success: true, message: 'Cart Updated' };
+            return { success: true, message: "Cart Updated" };
         }
         catch (error) {
             return { success: false, message: error.message };
@@ -62,7 +62,7 @@ let CartService = class CartService {
         try {
             const { userId } = getUserCartDto;
             const userData = await this.userModel.findById(userId);
-            let cartData = userData.cartData || {};
+            const cartData = userData.cartData || {};
             return { success: true, cartData };
         }
         catch (error) {

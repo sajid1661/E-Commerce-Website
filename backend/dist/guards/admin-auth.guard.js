@@ -19,15 +19,16 @@ let AdminAuthGuard = class AdminAuthGuard {
     }
     canActivate(context) {
         const request = context.switchToHttp().getRequest();
-        const token = request.headers['token'];
+        const token = request.headers["token"];
         if (!token) {
-            throw new common_1.UnauthorizedException('Not Authorized Login Again');
+            throw new common_1.UnauthorizedException("Not Authorized Login Again");
         }
         try {
-            const token_decode = jwt.verify(token, this.configService.get('JWT_SECRET'));
-            const adminKey = this.configService.get('ADMIN_EMAIL') + this.configService.get('ADMIN_PASSWORD');
+            const token_decode = jwt.verify(token, this.configService.get("JWT_SECRET"));
+            const adminKey = this.configService.get("ADMIN_EMAIL") +
+                this.configService.get("ADMIN_PASSWORD");
             if (token_decode !== adminKey) {
-                throw new common_1.UnauthorizedException('Not Authorized Login Again');
+                throw new common_1.UnauthorizedException("Not Authorized Login Again");
             }
             return true;
         }

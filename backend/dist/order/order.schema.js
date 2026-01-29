@@ -31,7 +31,7 @@ __decorate([
     __metadata("design:type", Object)
 ], Order.prototype, "address", void 0);
 __decorate([
-    (0, mongoose_1.Prop)({ required: true, default: 'Order Placed' }),
+    (0, mongoose_1.Prop)({ required: true, default: "Order Placed" }),
     __metadata("design:type", String)
 ], Order.prototype, "status", void 0);
 __decorate([

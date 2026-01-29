@@ -1,9 +1,9 @@
-import { Module } from '@nestjs/common';
-import { MongooseModule } from '@nestjs/mongoose';
-import { OrderController } from './order.controller';
-import { OrderService } from './order.service';
-import { Order, OrderSchema } from './order.schema';
-import { User, UserSchema } from '../user/user.schema';
+import { Module } from "@nestjs/common";
+import { MongooseModule } from "@nestjs/mongoose";
+import { OrderController } from "./order.controller";
+import { OrderService } from "./order.service";
+import { Order, OrderSchema } from "./order.schema";
+import { User, UserSchema } from "../user/user.schema";
 
 @Module({
   imports: [

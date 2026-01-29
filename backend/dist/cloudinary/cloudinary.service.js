@@ -17,13 +17,15 @@ let CloudinaryService = class CloudinaryService {
     constructor(configService) {
         this.configService = configService;
         cloudinary_1.v2.config({
-            cloud_name: this.configService.get('CLOUD_NAME'),
-            api_key: this.configService.get('CLOUD_API_KEY'),
-            api_secret: this.configService.get('CLOUD_API_SECRET'),
+            cloud_name: this.configService.get("CLOUD_NAME"),
+            api_key: this.configService.get("CLOUD_API_KEY"),
+            api_secret: this.configService.get("CLOUD_API_SECRET"),
         });
     }
     async uploadImage(filePath) {
-        const result = await cloudinary_1.v2.uploader.upload(filePath, { resource_type: 'image' });
+        const result = await cloudinary_1.v2.uploader.upload(filePath, {
+            resource_type: "image",
+        });
         return result.secure_url;
     }
 };

@@ -33,7 +33,7 @@ let CartController = class CartController {
 };
 exports.CartController = CartController;
 __decorate([
-    (0, common_1.Post)('add'),
+    (0, common_1.Post)("add"),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -41,7 +41,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CartController.prototype, "addToCart", null);
 __decorate([
-    (0, common_1.Post)('update'),
+    (0, common_1.Post)("update"),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -49,7 +49,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CartController.prototype, "updateCart", null);
 __decorate([
-    (0, common_1.Post)('get'),
+    (0, common_1.Post)("get"),
     (0, common_1.UseGuards)(user_auth_guard_1.UserAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -57,7 +57,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CartController.prototype, "getUserCart", null);
 exports.CartController = CartController = __decorate([
-    (0, common_1.Controller)('cart'),
+    (0, common_1.Controller)("cart"),
     __metadata("design:paramtypes", [cart_service_1.CartService])
 ], CartController);
 //# sourceMappingURL=cart.controller.js.map

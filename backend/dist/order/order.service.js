@@ -25,9 +25,9 @@ let OrderService = class OrderService {
         this.orderModel = orderModel;
         this.userModel = userModel;
         this.configService = configService;
-        this.currency = 'eur';
+        this.currency = "eur";
         this.deliveryCharge = 10;
-        this.stripe = new stripe_1.default(this.configService.get('STRIPE_SECRET_KEY'));
+        this.stripe = new stripe_1.default(this.configService.get("STRIPE_SECRET_KEY"));
     }
     async placeOrder(placeOrderDto) {
         try {
@@ -37,14 +37,14 @@ let OrderService = class OrderService {
                 items,
                 address,
                 amount,
-                paymentMethod: 'COD',
+                paymentMethod: "COD",
                 payment: false,
                 date: Date.now(),
             };
             const newOrder = new this.orderModel(orderData);
             await newOrder.save();
             await this.userModel.findByIdAndUpdate(userId, { cartData: {} });
-            return { success: true, message: 'Order Placed' };
+            return { success: true, message: "Order Placed" };
         }
         catch (error) {
             return { success: false, message: error.message };
@@ -58,7 +58,7 @@ let OrderService = class OrderService {
                 items,
                 address,
                 amount,
-                paymentMethod: 'Stripe',
+                paymentMethod: "Stripe",
                 payment: false,
                 date: Date.now(),
             };
@@ -78,7 +78,7 @@ let OrderService = class OrderService {
                 price_data: {
                     currency: this.currency,
                     product_data: {
-                        name: 'Delivery Charge',
+                        name: "Delivery Charge",
                     },
                     unit_amount: this.deliveryCharge * 100,
                 },
@@ -88,7 +88,7 @@ let OrderService = class OrderService {
                 success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
                 cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
                 line_items,
-                mode: 'payment',
+                mode: "payment",
             });
             return { success: true, session_url: session.url };
         }
@@ -99,7 +99,7 @@ let OrderService = class OrderService {
     async verifyStripe(verifyStripeDto) {
         const { orderId, success, userId } = verifyStripeDto;
         try {
-            if (success === 'true') {
+            if (success === "true") {
                 await this.orderModel.findByIdAndUpdate(orderId, { payment: true });
                 await this.userModel.findByIdAndUpdate(userId, { cartData: {} });
                 return { success: true };
@@ -114,7 +114,7 @@ let OrderService = class OrderService {
         }
     }
     async placeOrderRazorpay() {
-        return { success: false, message: 'Not implemented' };
+        return { success: false, message: "Not implemented" };
     }
     async allOrders() {
         try {
@@ -139,7 +139,7 @@ let OrderService = class OrderService {
         try {
             const { orderId, status } = updateStatusDto;
             await this.orderModel.findByIdAndUpdate(orderId, { status });
-            return { success: true, message: 'Status Updated' };
+            return { success: true, message: "Status Updated" };
         }
         catch (error) {
             return { success: false, message: error.message };

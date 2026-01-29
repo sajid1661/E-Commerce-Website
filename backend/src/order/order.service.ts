@@ -1,16 +1,22 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { Order, OrderDocument } from './order.schema';
-import { User, UserDocument } from '../user/user.schema';
-import { PlaceOrderDto, PlaceOrderStripeDto, VerifyStripeDto, UserOrdersDto, UpdateStatusDto } from './order.dto';
-import Stripe from 'stripe';
-import { ConfigService } from '@nestjs/config';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { Order, OrderDocument } from "./order.schema";
+import { User, UserDocument } from "../user/user.schema";
+import {
+  PlaceOrderDto,
+  PlaceOrderStripeDto,
+  VerifyStripeDto,
+  UserOrdersDto,
+  UpdateStatusDto,
+} from "./order.dto";
+import Stripe from "stripe";
+import { ConfigService } from "@nestjs/config";
 
 @Injectable()
 export class OrderService {
   private stripe: Stripe;
-  private currency = 'eur';
+  private currency = "eur";
   private deliveryCharge = 10;
 
   constructor(
@@ -18,10 +24,14 @@ export class OrderService {
     @InjectModel(User.name) private userModel: Model<UserDocument>,
     private configService: ConfigService,
   ) {
-    this.stripe = new Stripe(this.configService.get<string>('STRIPE_SECRET_KEY'));
+    this.stripe = new Stripe(
+      this.configService.get<string>("STRIPE_SECRET_KEY"),
+    );
   }
 
-  async placeOrder(placeOrderDto: PlaceOrderDto): Promise<{ success: boolean; message: string }> {
+  async placeOrder(
+    placeOrderDto: PlaceOrderDto,
+  ): Promise<{ success: boolean; message: string }> {
     try {
       const { userId, items, amount, address } = placeOrderDto;
 
@@ -30,7 +40,7 @@ export class OrderService {
         items,
         address,
         amount,
-        paymentMethod: 'COD',
+        paymentMethod: "COD",
         payment: false,
         date: Date.now(),
       };
@@ -39,13 +49,16 @@ export class OrderService {
       await newOrder.save();
       await this.userModel.findByIdAndUpdate(userId, { cartData: {} });
 
-      return { success: true, message: 'Order Placed' };
+      return { success: true, message: "Order Placed" };
     } catch (error) {
       return { success: false, message: error.message };
     }
   }
 
-  async placeOrderStripe(placeOrderStripeDto: PlaceOrderStripeDto, origin: string): Promise<{ success: boolean; session_url?: string; message?: string }> {
+  async placeOrderStripe(
+    placeOrderStripeDto: PlaceOrderStripeDto,
+    origin: string,
+  ): Promise<{ success: boolean; session_url?: string; message?: string }> {
     try {
       const { userId, items, amount, address } = placeOrderStripeDto;
 
@@ -54,7 +67,7 @@ export class OrderService {
         items,
         address,
         amount,
-        paymentMethod: 'Stripe',
+        paymentMethod: "Stripe",
         payment: false,
         date: Date.now(),
       };
@@ -77,7 +90,7 @@ export class OrderService {
         price_data: {
           currency: this.currency,
           product_data: {
-            name: 'Delivery Charge',
+            name: "Delivery Charge",
           },
           unit_amount: this.deliveryCharge * 100,
         },
@@ -88,7 +101,7 @@ export class OrderService {
         success_url: `${origin}/verify?success=true&orderId=${newOrder._id}`,
         cancel_url: `${origin}/verify?success=false&orderId=${newOrder._id}`,
         line_items,
-        mode: 'payment',
+        mode: "payment",
       });
 
       return { success: true, session_url: session.url };
@@ -97,10 +110,12 @@ export class OrderService {
     }
   }
 
-  async verifyStripe(verifyStripeDto: VerifyStripeDto): Promise<{ success: boolean }> {
+  async verifyStripe(
+    verifyStripeDto: VerifyStripeDto,
+  ): Promise<{ success: boolean }> {
     const { orderId, success, userId } = verifyStripeDto;
     try {
-      if (success === 'true') {
+      if (success === "true") {
         await this.orderModel.findByIdAndUpdate(orderId, { payment: true });
         await this.userModel.findByIdAndUpdate(userId, { cartData: {} });
         return { success: true };
@@ -115,10 +130,14 @@ export class OrderService {
 
   async placeOrderRazorpay(): Promise<any> {
     // Implement Razorpay logic
-    return { success: false, message: 'Not implemented' };
+    return { success: false, message: "Not implemented" };
   }
 
-  async allOrders(): Promise<{ success: boolean; orders?: any[]; message?: string }> {
+  async allOrders(): Promise<{
+    success: boolean;
+    orders?: any[];
+    message?: string;
+  }> {
     try {
       const orders = await this.orderModel.find({});
       return { success: true, orders };
@@ -127,7 +146,9 @@ export class OrderService {
     }
   }
 
-  async userOrders(userOrdersDto: UserOrdersDto): Promise<{ success: boolean; orders?: any[]; message?: string }> {
+  async userOrders(
+    userOrdersDto: UserOrdersDto,
+  ): Promise<{ success: boolean; orders?: any[]; message?: string }> {
     try {
       const { userId } = userOrdersDto;
       const orders = await this.orderModel.find({ userId });
@@ -137,11 +158,13 @@ export class OrderService {
     }
   }
 
-  async updateStatus(updateStatusDto: UpdateStatusDto): Promise<{ success: boolean; message: string }> {
+  async updateStatus(
+    updateStatusDto: UpdateStatusDto,
+  ): Promise<{ success: boolean; message: string }> {
     try {
       const { orderId, status } = updateStatusDto;
       await this.orderModel.findByIdAndUpdate(orderId, { status });
-      return { success: true, message: 'Status Updated' };
+      return { success: true, message: "Status Updated" };
     } catch (error) {
       return { success: false, message: error.message };
     }

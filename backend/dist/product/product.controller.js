@@ -23,7 +23,12 @@ let ProductController = class ProductController {
         this.productService = productService;
     }
     async addProduct(addProductDto, files) {
-        const allFiles = [files.image1?.[0], files.image2?.[0], files.image3?.[0], files.image4?.[0]].filter(Boolean);
+        const allFiles = [
+            files.image1?.[0],
+            files.image2?.[0],
+            files.image3?.[0],
+            files.image4?.[0],
+        ].filter(Boolean);
         return this.productService.addProduct(addProductDto, allFiles);
     }
     async removeProduct(removeProductDto) {
@@ -38,13 +43,13 @@ let ProductController = class ProductController {
 };
 exports.ProductController = ProductController;
 __decorate([
-    (0, common_1.Post)('add'),
+    (0, common_1.Post)("add"),
     (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileFieldsInterceptor)([
-        { name: 'image1', maxCount: 1 },
-        { name: 'image2', maxCount: 1 },
-        { name: 'image3', maxCount: 1 },
-        { name: 'image4', maxCount: 1 },
+        { name: "image1", maxCount: 1 },
+        { name: "image2", maxCount: 1 },
+        { name: "image3", maxCount: 1 },
+        { name: "image4", maxCount: 1 },
     ])),
     __param(0, (0, common_1.Body)()),
     __param(1, (0, common_1.UploadedFiles)()),
@@ -53,7 +58,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "addProduct", null);
 __decorate([
-    (0, common_1.Post)('remove'),
+    (0, common_1.Post)("remove"),
     (0, common_1.UseGuards)(admin_auth_guard_1.AdminAuthGuard),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
@@ -61,20 +66,20 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "removeProduct", null);
 __decorate([
-    (0, common_1.Post)('single'),
+    (0, common_1.Post)("single"),
     __param(0, (0, common_1.Body)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [product_dto_1.SingleProductDto]),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "singleProduct", null);
 __decorate([
-    (0, common_1.Get)('list'),
+    (0, common_1.Get)("list"),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], ProductController.prototype, "listProducts", null);
 exports.ProductController = ProductController = __decorate([
-    (0, common_1.Controller)('product'),
+    (0, common_1.Controller)("product"),
     __metadata("design:paramtypes", [product_service_1.ProductService])
 ], ProductController);
 //# sourceMappingURL=product.controller.js.map

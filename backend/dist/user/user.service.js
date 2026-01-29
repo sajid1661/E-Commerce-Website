@@ -26,14 +26,14 @@ let UserService = class UserService {
         this.configService = configService;
     }
     createToken(id) {
-        return jwt.sign({ id }, this.configService.get('JWT_SECRET'));
+        return jwt.sign({ id }, this.configService.get("JWT_SECRET"));
     }
     async register(registerDto) {
         try {
             const { name, email, password } = registerDto;
             const exists = await this.userModel.findOne({ email });
             if (exists) {
-                return { success: false, message: 'User already exists' };
+                return { success: false, message: "User already exists" };
             }
             const salt = await bcrypt.genSalt(10);
             const hashedPassword = await bcrypt.hash(password, salt);
@@ -63,7 +63,7 @@ let UserService = class UserService {
                 return { success: true, token };
             }
             else {
-                return { success: false, message: 'Invalid email or password' };
+                return { success: false, message: "Invalid email or password" };
             }
         }
         catch (error) {
@@ -73,12 +73,13 @@ let UserService = class UserService {
     async adminLogin(adminLoginDto) {
         try {
             const { email, password } = adminLoginDto;
-            if (email === this.configService.get('ADMIN_EMAIL') && password === this.configService.get('ADMIN_PASSWORD')) {
-                const token = jwt.sign(email + password, this.configService.get('JWT_SECRET'));
+            if (email === this.configService.get("ADMIN_EMAIL") &&
+                password === this.configService.get("ADMIN_PASSWORD")) {
+                const token = jwt.sign(email + password, this.configService.get("JWT_SECRET"));
                 return { success: true, token };
             }
             else {
-                return { success: false, message: 'Invalid email or password' };
+                return { success: false, message: "Invalid email or password" };
             }
         }
         catch (error) {

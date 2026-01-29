@@ -1,4 +1,10 @@
-import { IsArray, IsNotEmpty, IsNumber, IsObject, IsOptional, IsString } from 'class-validator';
+import {
+  IsArray,
+  IsNotEmpty,
+  IsNumber,
+  IsObject,
+  IsString,
+} from "class-validator";
 
 export class PlaceOrderDto {
   @IsString()

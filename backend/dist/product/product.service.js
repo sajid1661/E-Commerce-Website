@@ -25,8 +25,8 @@ let ProductService = class ProductService {
     }
     async addProduct(addProductDto, files) {
         try {
-            const { name, description, price, category, subCategory, sizes, bestseller } = addProductDto;
-            const images = files.filter(file => file);
+            const { name, description, price, category, subCategory, sizes, bestseller, } = addProductDto;
+            const images = files.filter((file) => file);
             const imagesUrl = await Promise.all(images.map(async (file) => {
                 return await this.cloudinaryService.uploadImage(file.path);
             }));
@@ -43,7 +43,7 @@ let ProductService = class ProductService {
             };
             const product = new this.productModel(productData);
             await product.save();
-            return { success: true, message: 'Product added' };
+            return { success: true, message: "Product added" };
         }
         catch (error) {
             return { success: false, message: error.message };
@@ -61,7 +61,7 @@ let ProductService = class ProductService {
     async removeProduct(removeProductDto) {
         try {
             await this.productModel.findByIdAndDelete(removeProductDto.id);
-            return { success: true, message: 'Product removed' };
+            return { success: true, message: "Product removed" };
         }
         catch (error) {
             return { success: false, message: error.message };
