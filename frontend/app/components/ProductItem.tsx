@@ -1,5 +1,7 @@
+'use client';
+
 import React, { useContext } from 'react';
-import { ShopContext } from '../../src/context/ShopContext'; // Adjust path
+import { ShopContext } from '../context/ShopContext';
 import Link from 'next/link';
 
 const ProductItem = ({ id, image, name, price }: { id: string; image: string[]; name: string; price: number }) => {

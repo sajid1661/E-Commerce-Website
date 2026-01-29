@@ -1,5 +1,8 @@
+'use client';
+
 import type { Metadata } from 'next';
 import './globals.css';
+import ShopContextProvider from './context/ShopContext';
 
 export const metadata: Metadata = {
   title: 'E-Commerce Website',
@@ -14,7 +17,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <ShopContextProvider>
+          {children}
+        </ShopContextProvider>
       </body>
     </html>
   );
