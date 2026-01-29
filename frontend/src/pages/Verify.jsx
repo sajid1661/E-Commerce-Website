@@ -3,10 +3,10 @@ import {ShopContext} from '../context/ShopContext'
 import { useSearchParams } from 'react-router-dom';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-const Verify = () => {
 
+const Verify = () => {
   const {navigate,token,setCartItems,backendUrl} = useContext(ShopContext);
-  const [searchParams,setSearchParams]=useSearchParams();
+  const [searchParams]=useSearchParams();
 
   const success=searchParams.get('success');
   const orderId=searchParams.get('orderId');
@@ -33,9 +33,10 @@ const Verify = () => {
   useEffect(()=>{
     verifyPayment();
   },[token]);
+
   return (
     <div className='text-3xl'>Verify</div>
   )
 } 
 
-export default Verify   
+export default Verify
