@@ -7,6 +7,7 @@ import userRouter from './routes/userRoute.js';
 import productRouter from './routes/productRoute.js';
 import cartRoute from './routes/cartRoute.js';
 import orderRouter from './routes/orderRoute.js';
+import logger from './logger.js';
 
 // App Config
 
@@ -31,7 +32,6 @@ app.use('/api/cart',cartRoute);
 app.use('/api/order',orderRouter);
 app.get('/',(req,res)=>{
     res.send('Api working');
-})
+});
 
-const logger = require('./logger');
 app.listen(port, () => logger.info(`Server started on PORT: ${port}`));

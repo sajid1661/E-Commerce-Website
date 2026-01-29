@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken'
+import logger from '../logger.js';
 
 const authUser=async(req,res,next)=>{
     const {token}= req.headers;
@@ -13,8 +14,7 @@ const authUser=async(req,res,next)=>{
         next();
         
     } catch (error) {
-        const logger = require('../logger');
-logger.error(error.message);
+        logger.error(error.message);
         res.json({success:false,message:error.message});
     }
 }
