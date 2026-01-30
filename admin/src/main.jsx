@@ -4,6 +4,11 @@ import "./index.css";
 import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 
+// Initialize dark mode immediately
+if (localStorage.getItem('adminDarkMode') === 'true') {
+  document.documentElement.classList.add('dark');
+}
+
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
       <App />

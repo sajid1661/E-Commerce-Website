@@ -15,6 +15,9 @@ const ShopContextProvider = (props) => {
   const [cartItems, setCartItems] = useState({});
   const [products,setProducts]=useState([]);
   const [token,setToken]=useState('');
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem('darkMode') === 'true'
+  );
   const navigate= useNavigate();
 
   const addToCart = async (itemId, size) => {
@@ -136,8 +139,21 @@ useEffect(()=>{
     getProductsData();
 },[]);
 
+useEffect(() => {
+  localStorage.setItem('darkMode', darkMode);
+  if (darkMode) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+}, [darkMode]);
 
 
+
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
 
   const value = {
     products,
@@ -156,7 +172,9 @@ useEffect(()=>{
     backendUrl,
     token,
     setToken,
-    setCartItems
+    setCartItems,
+    darkMode,
+    toggleDarkMode
   };
   // Step 3: Wrap children inside Provider
   return (

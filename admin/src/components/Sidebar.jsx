@@ -4,17 +4,17 @@ import { assets } from '../assets/assets'
 
 const Sidebar = () => {
   return (
-    <div className='w-[18%] min-h-screen border-r-2'>
+    <div className='w-[18%] min-h-screen border-r-2 dark:border-gray-700 dark:bg-gray-800'>
       <div className='flex flex-col gap-4 pt-6 pl-[20%] text-[15px] '>
-        <NavLink className='flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-1' to={'/add'}>
+        <NavLink className='flex items-center gap-3 border border-gray-300 dark:border-gray-600 border-r-0 px-3 py-2 rounded-1 dark:text-gray-200' to={'/add'}>
             <img className='w-5 h-5 ' src={assets.add_icon} alt="add" />
             <p className='hidden md:block'>Add Items</p>
         </NavLink>
-        <NavLink className='flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-1' to={'/list'}>
+        <NavLink className='flex items-center gap-3 border border-gray-300 dark:border-gray-600 border-r-0 px-3 py-2 rounded-1 dark:text-gray-200' to={'/list'}>
             <img className='w-5 h-5 ' src={assets.order_icon} alt="order" />
             <p className='hidden md:block'>List Items</p>
         </NavLink>
-        <NavLink className='flex items-center gap-3 border border-gray-300 border-r-0 px-3 py-2 rounded-1' to={'/orders'}>
+        <NavLink className='flex items-center gap-3 border border-gray-300 dark:border-gray-600 border-r-0 px-3 py-2 rounded-1 dark:text-gray-200' to={'/orders'}>
             <img className='w-5 h-5 ' src={assets.order_icon} alt="add" />
             <p className='hidden md:block'>Orders</p>
         </NavLink>

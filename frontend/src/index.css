@@ -1,6 +1,86 @@
 @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&display=swap');
 @import "tailwindcss";
 
+:root {
+  --bg-primary: #ffffff;
+  --bg-secondary: #f9fafb;
+  --bg-tertiary: #f3f4f6;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-tertiary: #4b5563;
+  --border-color: #e5e7eb;
+}
+
+html.dark {
+  --bg-primary: #111827;
+  --bg-secondary: #1f2937;
+  --bg-tertiary: #374151;
+  --text-primary: #ffffff;
+  --text-secondary: #e5e7eb;
+  --text-tertiary: #f3f4f6;
+  --border-color: #4b5563;
+}
+
+/* Dark mode icon inversion - only small icons, not content images */
+html.dark img[src*="icon"],
+html.dark img[alt*="icon"],
+html.dark img[alt*="Icon"] {
+  filter: invert(1) brightness(1.2);
+}
+
+/* Logo brightness in dark mode */
+html.dark img[src*="logo"],
+html.dark img[alt*="logoPic"],
+html.dark img[alt*="Logo"] {
+  filter: brightness(0) invert(1);
+}
+
+/* Utility classes for dark mode */
+.bg-primary {
+  background-color: var(--bg-primary);
+}
+
+.bg-secondary {
+  background-color: var(--bg-secondary);
+}
+
+.bg-tertiary {
+  background-color: var(--bg-tertiary);
+}
+
+.text-primary {
+  color: var(--text-primary);
+}
+
+.text-secondary {
+  color: var(--text-secondary);
+}
+
+.text-tertiary {
+  color: var(--text-tertiary);
+}
+
+.border-color {
+  border-color: var(--border-color);
+}
+
+.border-t-color {
+  border-top: 1px solid var(--border-color);
+}
+
+.border-b-color {
+  border-bottom: 1px solid var(--border-color);
+}
+
+.border-color-1 {
+  border: 1px solid var(--border-color);
+}
+
+.bg-text-inverted {
+  background-color: var(--text-primary);
+  color: var(--bg-primary);
+}
+
 *{
     font-family: Outfit;
 }
@@ -23,5 +103,10 @@ a.active hr{
   a.active{
     background-color: black;
     color: white;
+  }
+  
+  html.dark a.active{
+    background-color: white;
+    color: black;
   }
 }
