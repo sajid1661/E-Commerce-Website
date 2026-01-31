@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
+  webpack: (config) => {
+    // Exclude src directory from webpack compilation
+    config.module.rules.push({
+      test: /\.(jsx?|tsx?)$/,
+      exclude: /src/,
+    });
+    return config;
   },
 };
 

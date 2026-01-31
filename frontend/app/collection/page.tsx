@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext, useEffect, useState } from 'react';
-import { assets } from '../../src/assets/assets';
+import { assets } from '../assets/assets';
 import Title from '../components/Title';
 import { ShopContext } from '../context/ShopContext';
 import ProductItem from '../components/ProductItem';

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext, useState } from 'react';
-import { assets } from '../../src/assets/assets'; // Adjust path
+import { assets } from '../assets/assets'; // Adjust path
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ShopContext } from '../context/ShopContext'; // Adjust path
