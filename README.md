@@ -179,7 +179,9 @@ Root-level scripts (run from repository root):
 - `npm run dev:admin` - Run admin in dev mode
 - `npm run lint:all` - Lint all projects
 - `npm run test:backend` - Run backend tests
-- `npm run clean` - Remove all build artifacts and node_modules
+- `npm run clean:backend` - Clean backend build artifacts
+- `npm run clean:frontend` - Clean frontend build artifacts
+- `npm run clean:admin` - Clean admin build artifacts
 
 ## Contributing
 
