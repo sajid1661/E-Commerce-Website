@@ -4,7 +4,7 @@
   "description": "E-Commerce Website Monorepo - Backend, Frontend, and Admin",
   "private": true,
   "scripts": {
-    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install && cd ../admin && npm install && cd ..",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install && cd ../admin && npm install",
     "build:backend": "cd backend && npm run build",
     "build:frontend": "cd frontend && npm run build",
     "build:admin": "cd admin && npm run build",
@@ -17,7 +17,9 @@
     "lint:admin": "cd admin && npm run lint",
     "lint:all": "npm run lint:backend && npm run lint:frontend && npm run lint:admin",
     "test:backend": "cd backend && npm run test",
-    "clean": "rm -rf backend/dist backend/node_modules frontend/.next frontend/node_modules admin/.next admin/node_modules node_modules"
+    "clean:backend": "cd backend && npm run clean || echo 'No clean script in backend'",
+    "clean:frontend": "cd frontend && npm run clean || echo 'No clean script in frontend'",
+    "clean:admin": "cd admin && npm run clean || echo 'No clean script in admin'"
   },
   "keywords": [
     "e-commerce",
