@@ -1,7 +1,9 @@
+'use client';
+
 import React from 'react'
 
 const NewsletterBox = () => {
-  const onSubmitHandler=(event)=>{
+  const onSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
       event.preventDefault();
   }
   return (

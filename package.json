@@ -1,0 +1,34 @@
+{
+  "name": "e-commerce-website",
+  "version": "1.0.0",
+  "description": "E-Commerce Website Monorepo - Backend, Frontend, and Admin",
+  "private": true,
+  "scripts": {
+    "install:all": "cd backend && npm install && cd ../frontend && npm install && cd ../admin && npm install",
+    "build:backend": "cd backend && npm run build",
+    "build:frontend": "cd frontend && npm run build",
+    "build:admin": "cd admin && npm run build",
+    "build:all": "npm run build:backend && npm run build:frontend && npm run build:admin",
+    "dev:backend": "cd backend && npm run start:dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "dev:admin": "cd admin && npm run dev",
+    "lint:backend": "cd backend && npm run lint",
+    "lint:frontend": "cd frontend && npm run lint",
+    "lint:admin": "cd admin && npm run lint",
+    "lint:all": "npm run lint:backend && npm run lint:frontend && npm run lint:admin",
+    "test:backend": "cd backend && npm run test",
+    "clean:backend": "cd backend && npm run clean || echo 'No clean script in backend'",
+    "clean:frontend": "cd frontend && npm run clean || echo 'No clean script in frontend'",
+    "clean:admin": "cd admin && npm run clean || echo 'No clean script in admin'"
+  },
+  "keywords": [
+    "e-commerce",
+    "monorepo",
+    "nestjs",
+    "nextjs",
+    "typescript"
+  ],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {}
+}

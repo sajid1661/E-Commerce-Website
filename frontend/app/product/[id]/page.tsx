@@ -3,8 +3,8 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { ShopContext } from '../../context/ShopContext';
-import { assets } from '../../../src/assets/assets';
-import RelatedProducts from '../components/RelatedProducts';
+import { assets } from '../../assets/assets';
+import RelatedProducts from '../../components/RelatedProducts';
 
 const Product = () => {
   const { id } = useParams();

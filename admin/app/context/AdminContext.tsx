@@ -4,12 +4,22 @@ import { createContext, useEffect, useState } from 'react';
 
 export const AdminContext = createContext<any>(null);
 
-const AdminContextProvider = (props: React.PropsWithChildren<{}>) => {
+export const AdminContextProvider = (props: React.PropsWithChildren<{}>) => {
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
-  const [token, setToken] = useState(localStorage.getItem('token') ? localStorage.getItem('token') : '');
+  const [token, setToken] = useState('');
 
   useEffect(() => {
-    localStorage.setItem('token', token);
+    // Only access localStorage on the client side
+    const storedToken = localStorage.getItem('token') || '';
+    setToken(storedToken);
+  }, []);
+
+  useEffect(() => {
+    if (token) {
+      localStorage.setItem('token', token);
+    } else {
+      localStorage.removeItem('token');
+    }
   }, [token]);
 
   const value = {

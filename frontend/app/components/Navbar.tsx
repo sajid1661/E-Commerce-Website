@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useContext, useState } from 'react';
-import { assets } from '../../src/assets/assets'; // Adjust path
+import { assets } from '../assets/assets'; // Adjust path
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { ShopContext } from '../context/ShopContext'; // Adjust path
@@ -17,8 +17,7 @@ const Navbar = () => {
     setToken('');
     setCartItems({});
   };
-    
-  }
+
   return (
     <div className="flex items-center justify-between py-5 font-medium ">
       <Link href='/'> <img src={assets.logo} className="w-36" alt="logoPic" /></Link>

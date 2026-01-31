@@ -1,12 +1,12 @@
 'use client';
 
-import React, { useContext, useEffect } from 'react';
+import React, { Suspense, useContext, useEffect } from 'react';
 import { ShopContext } from '../context/ShopContext';
 import { useSearchParams } from 'next/navigation';
 import axios from 'axios';
 import { toast } from 'react-toastify';
 
-const Verify = () => {
+const VerifyContent = () => {
   const { router, token, setCartItems, backendUrl } = useContext(ShopContext);
   const searchParams = useSearchParams();
 
@@ -29,7 +29,7 @@ const Verify = () => {
       } else {
         router.push('/cart');
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       toast.error((error as any).message);
     }
@@ -39,7 +39,15 @@ const Verify = () => {
     verifyPayment();
   }, [token]);
 
-  return <div className="text-3xl">Verify</div>;
+  return <div className="text-3xl">Verifying payment...</div>;
+};
+
+const Verify = () => {
+  return (
+    <Suspense fallback={<div className="text-3xl">Loading...</div>}>
+      <VerifyContent />
+    </Suspense>
+  );
 };
 
 export default Verify;

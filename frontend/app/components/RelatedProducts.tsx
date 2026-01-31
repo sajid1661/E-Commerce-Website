@@ -3,20 +3,20 @@ import { ShopContext } from '../context/ShopContext'
 import Title from '../components/Title'
 import ProductItem from '../components/ProductItem'
 
-const RelatedProducts = ({category,subCategory}) => {
+const RelatedProducts = ({category,subCategory}: {category: string, subCategory: string}) => {
 
     const {products}=useContext(ShopContext);
-    const [related, setRelated]= useState([]);
+    const [related, setRelated]= useState<any[]>([]);
 
     useEffect(()=>{
         if(products.length > 0){
             let productsCopy=products.slice();
-            productsCopy= productsCopy.filter((item)=> category === item.category);
-            productsCopy=productsCopy.filter((item)=> subCategory===item.subCategory);
+            productsCopy= productsCopy.filter((item: any)=> category === item.category);
+            productsCopy=productsCopy.filter((item: any)=> subCategory===item.subCategory);
            setRelated(productsCopy.slice(0,5));
 
         }
-    },[]);
+    },[products, category, subCategory]);
 
   return (
     <div className='my-24'>

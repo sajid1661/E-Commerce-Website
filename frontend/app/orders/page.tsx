@@ -33,7 +33,7 @@ const Orders = () => {
         });
         setOrderData(allOrdersItem.reverse());
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       toast.error(error.message);
     }
