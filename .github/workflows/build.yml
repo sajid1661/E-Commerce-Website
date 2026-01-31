@@ -1,0 +1,67 @@
+name: Build Verification
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+      
+      - name: Setup Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+          cache-dependency-path: |
+            backend/package-lock.json
+            frontend/package-lock.json
+            admin/package-lock.json
+      
+      - name: Install Backend Dependencies
+        run: |
+          cd backend
+          npm ci
+      
+      - name: Build Backend
+        run: |
+          cd backend
+          npm run build
+      
+      - name: Install Frontend Dependencies
+        run: |
+          cd frontend
+          npm ci
+      
+      - name: Build Frontend
+        run: |
+          cd frontend
+          npm run build
+      
+      - name: Install Admin Dependencies
+        run: |
+          cd admin
+          npm ci
+      
+      - name: Build Admin
+        run: |
+          cd admin
+          npm run build
+      
+      - name: Run Backend Tests
+        run: |
+          cd backend
+          npm run test -- --passWithNoTests
+        continue-on-error: false
