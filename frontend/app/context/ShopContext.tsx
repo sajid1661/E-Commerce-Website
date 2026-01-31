@@ -13,8 +13,8 @@ const ShopContextProvider = (props: React.PropsWithChildren<{}>) => {
   const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL;
   const [search, setSearch] = useState('');
   const [showSearch, setShowSearch] = useState(false);
-  const [cartItems, setCartItems] = useState({});
-  const [products, setProducts] = useState([]);
+  const [cartItems, setCartItems] = useState<any>({});
+  const [products, setProducts] = useState<any[]>([]);
   const [token, setToken] = useState('');
   const router = useRouter();
 
@@ -41,7 +41,7 @@ const ShopContextProvider = (props: React.PropsWithChildren<{}>) => {
     if (token) {
       try {
         await axios.post(backendUrl + '/api/cart/add', { itemId, size }, { headers: { token } });
-      } catch (error) {
+      } catch (error: any) {
         console.log(error);
         toast.error(error.message);
       }
@@ -56,7 +56,7 @@ const ShopContextProvider = (props: React.PropsWithChildren<{}>) => {
           if (cartItems[items][item] > 0) {
             totalCount += cartItems[items][item];
           }
-        } catch (error) {
+        } catch (error: any) {
           console.log(error);
         }
       }
@@ -71,7 +71,7 @@ const ShopContextProvider = (props: React.PropsWithChildren<{}>) => {
     if (token) {
       try {
         await axios.post(backendUrl + '/api/cart/update', { itemId, size, quantity }, { headers: { token } });
-      } catch (error) {
+      } catch (error: any) {
         console.log(error);
         toast.error(error.message);
       }
@@ -87,7 +87,7 @@ const ShopContextProvider = (props: React.PropsWithChildren<{}>) => {
           if (cartItems[items][item] > 0) {
             totalAmount += itemInfo.price * cartItems[items][item];
           }
-        } catch (error) {
+        } catch (error: any) {
           console.log(error);
         }
       }
@@ -103,7 +103,7 @@ const ShopContextProvider = (props: React.PropsWithChildren<{}>) => {
       } else {
         toast.error(response.data.message);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       toast.error(error.message);
     }
@@ -115,14 +115,15 @@ const ShopContextProvider = (props: React.PropsWithChildren<{}>) => {
       if (response.data.success) {
         setCartItems(response.data.cartData);
       }
-    } catch (error) {
+    } catch (error: any) {
       console.log(error);
       toast.error(error.message);
     }
   };
 
   useEffect(() => {
-    if (!token && localStorage.getItem('token')) {
+    // Check if we're on the client side before accessing localStorage
+    if (typeof window !== 'undefined' && !token && localStorage.getItem('token')) {
       setToken(localStorage.getItem('token')!);
       getUserCart(localStorage.getItem('token')!);
     }

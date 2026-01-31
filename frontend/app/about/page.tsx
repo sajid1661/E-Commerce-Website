@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import Title from '../components/Title';
 import NewsletterBox from '../components/NewsletterBox';
@@ -13,9 +15,9 @@ const About = () => {
         <img className="w-full md:max-w-[450px]" src={assets.about_img} alt="About_img" />
         <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
           <p>Forever was born out of a passion for innovation and a desire to resolutionize the way people shop online. Our journey begon with a simple idea to provide a platform where customers can easily discover, explore, and purchase a wide range of products form the comfort of their homes.</p>
-          <p>Since our incerption, we've worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. Frome fashion and beauty to electronics and home essantials, we offer an extensive collectin foruced from trusted brands and suppliers. </p>
+          <p>Since our incerption, we&apos;ve worked tirelessly to curate a diverse selection of high-quality products that cater to every taste and preference. Frome fashion and beauty to electronics and home essantials, we offer an extensive collectin foruced from trusted brands and suppliers. </p>
           <b className="text-gray-800">Our Mession</b>
-          <p>Our mission at Forever is to empower customers with choice, convenience, and confidence. We're dedicated to providing a seamless shipping experience that exceds expectations, from browsing and ordering to delivery and beyond.</p>
+          <p>Our mission at Forever is to empower customers with choice, convenience, and confidence. We&apos;re dedicated to providing a seamless shipping experience that exceds expectations, from browsing and ordering to delivery and beyond.</p>
         </div>
       </div>
 
