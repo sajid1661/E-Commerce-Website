@@ -47,7 +47,7 @@ jobs:
   build-frontend:
     name: Build Frontend
     runs-on: ubuntu-latest
-    continue-on-error: true  # Allow failure due to pre-existing issues
+    continue-on-error: true  # Temporary: Allow failure due to pre-existing dependency and config issues (TODO: remove after fixes)
     
     strategy:
       matrix:
@@ -77,7 +77,7 @@ jobs:
   build-admin:
     name: Build Admin
     runs-on: ubuntu-latest
-    continue-on-error: true  # Allow failure due to pre-existing issues
+    continue-on-error: true  # Temporary: Allow failure due to pre-existing dependency and config issues (TODO: remove after fixes)
     
     strategy:
       matrix:
